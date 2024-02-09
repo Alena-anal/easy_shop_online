@@ -1,0 +1,19 @@
+{
+  "name": "ubiquitous-octo-engine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "stylelint": "^13.5.0",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-scss": "^3.17.2"
+  },
+  "volta": {
+    "node": "14.21.3"
+  }
+}
