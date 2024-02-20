@@ -9,6 +9,16 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  devServer: {
+    hot: true,
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    port: 3000,
+  },
+  performance: {
+    hints: false,
+  },
   module: {
     rules: [
       {
