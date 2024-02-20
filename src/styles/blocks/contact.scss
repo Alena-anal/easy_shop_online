@@ -1,5 +1,4 @@
 .contact {
-
   &__content {
     @include pageGrid;
   }
@@ -37,7 +36,6 @@
     color: $input-text-color;
     font-weight: 400;
 
-
     &::placeholder {
       font-family: $font;
       color: $placeholder-color;
@@ -52,7 +50,7 @@
 
     &:focus {
       outline: none;
-      border: 2px solid #F98921;
+      border: 2px solid #f98921;
     }
   }
 
@@ -83,7 +81,7 @@
 
     &:focus {
       outline: none;
-      border: 2px solid #F98921;
+      border: 2px solid #f98921;
     }
   }
 
@@ -123,9 +121,12 @@
   }
 }
 
+.none {
+  display: none;
+}
+
 input:-webkit-autofill,
 textarea:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px $input-color inset;
   background-color: $input-color;
 }
-
