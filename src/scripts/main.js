@@ -1,7 +1,7 @@
 'use strict';
 
 const TELEGRAM_TOKEN = '6358692702:AAGKNgjxrpnT-M-gE2YpNyM6BDBXrJX737s';
-const TELEGRAM_CHAT_ID = '275210708';
+const TELEGRAM_CHAT_ID = '761423783';
 const TELEGRAM_URL = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
 
 const form = document.querySelector('.form');
@@ -9,7 +9,7 @@ const nameInput = document.querySelector('.name');
 const phoneInput = document.querySelector('.phone');
 const messageTextarea = document.querySelector('.message');
 
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', function (event) {
   event.preventDefault();
 
   if (validateForm() && canSubmitForm()) {
@@ -36,7 +36,7 @@ function validateForm() {
   const phone = phoneInput.value;
 
   if (!validator.matches(name, /^[\p{L}\s'-]+$/u)) {
-    showModal('Введіть правильне ім\'я', 'red');
+    showModal("Введіть правильне ім'я", 'red');
 
     return false;
   }
@@ -55,8 +55,10 @@ function canSubmitForm() {
   const twentyFourHoursInMilliseconds = 15 * 60 * 1000;
   const currentTime = new Date().getTime();
 
-  if (!lastSubmissionTime
-      || currentTime - lastSubmissionTime >= twentyFourHoursInMilliseconds) {
+  if (
+    !lastSubmissionTime ||
+    currentTime - lastSubmissionTime >= twentyFourHoursInMilliseconds
+  ) {
     return true;
   } else {
     alert('Ви можете відправляти форму лише один раз за 15 хвилин.');
@@ -83,7 +85,7 @@ function fetchData(url, method, data, callback) {
 
   xhr.open(method, url, true);
 
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         const responseData = JSON.parse(xhr.responseText);
@@ -95,7 +97,7 @@ function fetchData(url, method, data, callback) {
     }
   };
 
-  xhr.onerror = function() {
+  xhr.onerror = function () {
     callback('Network error');
   };
 
