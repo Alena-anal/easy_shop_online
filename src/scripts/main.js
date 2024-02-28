@@ -1,6 +1,6 @@
 'use strict';
 
-const SERVER_URL = `http://localhost:3000/submit`;
+const SERVER_URL = `https://telegram-sender-server.vercel.app/submit`;
 
 const form = document.querySelector('.form');
 const nameInput = document.querySelector('.name');
