@@ -1,15 +1,13 @@
 'use strict';
 
-const TELEGRAM_TOKEN = '6358692702:AAGKNgjxrpnT-M-gE2YpNyM6BDBXrJX737s';
-const TELEGRAM_CHAT_ID = '761423783';
-const TELEGRAM_URL = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+const SERVER_URL = `http://localhost:3000/submit`;
 
 const form = document.querySelector('.form');
 const nameInput = document.querySelector('.name');
 const phoneInput = document.querySelector('.phone');
 const messageTextarea = document.querySelector('.message');
 
-form.addEventListener('submit', function (event) {
+form.addEventListener('submit', async function (event) {
   event.preventDefault();
 
   if (validateForm() && canSubmitForm()) {
@@ -18,16 +16,7 @@ form.addEventListener('submit', function (event) {
     const message = messageTextarea.value || '';
 
     const data = getFormData(name, phone, message);
-
-    fetchData(TELEGRAM_URL, 'POST', data, (error, reqData) => {
-      if (reqData) {
-        showModal(`Все ок, скоро ми з вами зв'яжемось`, '#4CAF50');
-        setLastSubmissionTime();
-      } else {
-        showModal('Щось пішло не так, спробуйте знову', 'red');
-        console.error(error);
-      }
-    });
+    await fetchData(SERVER_URL, 'POST', data);
   }
 });
 
@@ -73,37 +62,33 @@ function setLastSubmissionTime() {
 
 function getFormData(name, phone, message) {
   const data = {
-    chat_id: TELEGRAM_CHAT_ID,
-    text: `Имя: ${name}\nТелефон: ${phone}\nСообщение: ${message}`,
+    name: name,
+    phone: phone,
+    message: message,
   };
 
   return JSON.stringify(data);
 }
 
-function fetchData(url, method, data, callback) {
-  const xhr = new XMLHttpRequest();
+async function fetchData(url, method, data) {
+  try {
+    const response = await fetch(url, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: data,
+    });
 
-  xhr.open(method, url, true);
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        const responseData = JSON.parse(xhr.responseText);
-
-        callback(null, responseData);
-      } else {
-        callback(xhr.statusText);
-      }
+    if (response.status === 200) {
+      showModal("Все ок, скоро ми з вами зв'яжемось", '#4CAF50');
+      setLastSubmissionTime();
+    } else {
+      showModal('Щось пішло не так, спробуйте знову', 'red');
     }
-  };
-
-  xhr.onerror = function () {
-    callback('Network error');
-  };
-
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  xhr.send(data);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function showModal(modalMessage, color = '#4CAF50') {
