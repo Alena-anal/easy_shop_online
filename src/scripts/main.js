@@ -83,9 +83,7 @@ async function fetchData(url, method, data) {
     if (response.status === 200) {
       showModal("Все ок, скоро ми з вами зв'яжемось", '#4CAF50');
       setLastSubmissionTime();
-    } else {
-      showModal('Щось пішло не так, спробуйте знову', 'red');
-    }
+  
   } catch (error) {
     console.error(error);
   }
