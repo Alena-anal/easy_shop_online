@@ -86,6 +86,7 @@ async function fetchData(url, method, data) {
 
       setLastSubmissionTime();
       document.querySelector('form').reset();
+
     }
   } catch (error) {
     console.error(error);

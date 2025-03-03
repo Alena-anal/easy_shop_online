@@ -12,6 +12,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'), // папка для сборки
     clean: true, // очищает папку dist перед каждой сборкой
     publicPath: '/', // Указываем базовый путь для статики
+
   },
   module: {
     rules: [
