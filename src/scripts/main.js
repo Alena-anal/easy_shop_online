@@ -6,6 +6,7 @@ const form = document.querySelector('.form');
 const nameInput = document.querySelector('.name');
 const phoneInput = document.querySelector('.phone');
 const messageTextarea = document.querySelector('.message');
+const CHAT_ID = "761423783";
 
 form.addEventListener('submit', async function (event) {
   event.preventDefault();
@@ -65,7 +66,8 @@ function getFormData(name, phone, message) {
     name: name,
     phone: phone,
     message: message,
-  };
+    chatId: CHAT_ID,
+    };
 
   return JSON.stringify(data);
 }
