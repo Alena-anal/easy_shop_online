@@ -6,13 +6,13 @@
   &__content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     height: 100vh;
   }
 
   &__title {
     margin: 0;
-    color: #fff;
+    color: #000000;
     font-size: 36px;
     font-weight: 700;
     line-height: 100%;
@@ -25,6 +25,9 @@
 
   &__bottom {
     padding-bottom: 40px;
+    padding-top: 40px;
+    text-align: center;
+
 
     @include onTablet {
       padding-bottom: 64px;

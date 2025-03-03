@@ -6,6 +6,7 @@ const form = document.querySelector('.form');
 const nameInput = document.querySelector('.name');
 const phoneInput = document.querySelector('.phone');
 const messageTextarea = document.querySelector('.message');
+const CHAT_ID = "761423783";
 
 form.addEventListener('submit', async function (event) {
   event.preventDefault();
@@ -65,7 +66,8 @@ function getFormData(name, phone, message) {
     name: name,
     phone: phone,
     message: message,
-  };
+    chatId: CHAT_ID,
+    };
 
   return JSON.stringify(data);
 }
@@ -78,12 +80,16 @@ async function fetchData(url, method, data) {
         'Content-Type': 'application/json',
       },
       body: data,
-    });
+    })
 
     if (response.status === 200) {
       showModal("Все ок, скоро ми з вами зв'яжемось", '#4CAF50');
+      window.location.href = "result.html"
+
       setLastSubmissionTime();
-  
+      document.querySelector('form').reset();
+
+    }
   } catch (error) {
     console.error(error);
   }
@@ -98,9 +104,9 @@ function showModal(modalMessage, color = '#4CAF50') {
 
   document.body.appendChild(notification);
 
-  if (color !== 'red') {
-    document.querySelector('form').reset();
-  }
+  // if (color !== 'red') {
+  //   document.querySelector('form').reset();
+  // }
 
   setTimeout(() => {
     document.body.removeChild(notification);
