@@ -55,30 +55,25 @@ function getFormData(name, phone, message) {
 
 async function fetchData(url, method, data) {
   try {
-    grecaptcha.ready(async () => {
-      const token = await grecaptcha.execute('6LehoOgqAAAAALZnjBtZSX9S9j5m8TQb68677WbS', { action: 'submit' });
-      data = { ...JSON.parse(data), recaptchaToken: token };
 
-      const response = await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        sessionStorage.setItem('formSubmitted', 'true');
-        window.location.href = 'result.html';
-        form.reset();
-      } else {
-        showModal("Щось пішло не так");
-      }
-
+    const response = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: data
     });
+
+    const parsedData = JSON.parse(data)
+
+    if (response.ok) {
+      window.location.href = `result.html?name=${encodeURIComponent(parsedData.name)}`;
+      form.reset();
+    } else {
+      showModal("щось пішло не так");
+    }
   } catch (error) {
     console.error(error);
   }
 }
-
 
 
 function showModal(modalMessage) {
