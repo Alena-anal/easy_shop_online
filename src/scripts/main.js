@@ -1,17 +1,18 @@
 'use strict';
 
+
 const SERVER_URL = `https://telegram-sender-server.vercel.app/submit`;
+const CHAT_ID = "761423783";
 
 const form = document.querySelector('.form');
 const nameInput = document.querySelector('.name');
 const phoneInput = document.querySelector('.phone');
 const messageTextarea = document.querySelector('.message');
-const CHAT_ID = "761423783";
 
 form.addEventListener('submit', async function (event) {
   event.preventDefault();
 
-  if (validateForm() && canSubmitForm()) {
+  if (validateForm()) {
     const name = nameInput.value || '';
     const phone = phoneInput.value || '';
     const message = messageTextarea.value || '';
@@ -40,26 +41,6 @@ function validateForm() {
   return true;
 }
 
-function canSubmitForm() {
-  const lastSubmissionTime = localStorage.getItem('lastSubmissionTime');
-  const twentyFourHoursInMilliseconds = 15 * 60 * 1000;
-  const currentTime = new Date().getTime();
-
-  if (
-    !lastSubmissionTime ||
-    currentTime - lastSubmissionTime >= twentyFourHoursInMilliseconds
-  ) {
-    return true;
-  } else {
-    alert('Ви можете відправляти форму лише один раз за 15 хвилин.');
-
-    return false;
-  }
-}
-
-function setLastSubmissionTime() {
-  localStorage.setItem('lastSubmissionTime', new Date().getTime());
-}
 
 function getFormData(name, phone, message) {
   const data = {
@@ -67,46 +48,44 @@ function getFormData(name, phone, message) {
     phone: phone,
     message: message,
     chatId: CHAT_ID,
-    };
+  };
 
   return JSON.stringify(data);
 }
 
 async function fetchData(url, method, data) {
   try {
-    const response = await fetch(url, {
-      method: method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: data,
-    })
+    grecaptcha.ready(async () => {
+      const token = await grecaptcha.execute('6LehoOgqAAAAALZnjBtZSX9S9j5m8TQb68677WbS', { action: 'submit' });
+      data = { ...JSON.parse(data), recaptchaToken: token };
 
-    if (response.status === 200) {
-      showModal("Все ок, скоро ми з вами зв'яжемось", '#4CAF50');
-      window.location.href = "result.html"
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-      setLastSubmissionTime();
-      document.querySelector('form').reset();
+      if (response.ok) {
+        sessionStorage.setItem('formSubmitted', 'true');
+        window.location.href = 'result.html';
+        form.reset();
+      } else {
+        showModal("Щось пішло не так");
+      }
 
-    }
+    });
   } catch (error) {
     console.error(error);
   }
 }
 
-function showModal(modalMessage, color = '#4CAF50') {
-  const notification = document.createElement('div');
 
-  notification.style.backgroundColor = color;
+
+function showModal(modalMessage) {
+  const notification = document.createElement('div');
   notification.className = 'notification';
   notification.textContent = modalMessage;
-
   document.body.appendChild(notification);
-
-  // if (color !== 'red') {
-  //   document.querySelector('form').reset();
-  // }
 
   setTimeout(() => {
     document.body.removeChild(notification);
