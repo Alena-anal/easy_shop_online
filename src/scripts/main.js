@@ -1,7 +1,9 @@
 'use strict';
 
 
-const SERVER_URL = `https://telegram-sender-server.vercel.app/submit`;
+const route = '/submit'
+const SERVER_URL = `https://telegram-sender-server.vercel.app${route}`;
+// const SERVER_URL = `http://localhost:3000${route}`;
 const CHAT_ID = "761423783";
 
 const form = document.querySelector('.form');
@@ -32,7 +34,7 @@ function validateForm() {
     return false;
   }
 
-  if (!validator.isMobilePhone(phone, 'any', { strictMode: true })) {
+  if (!validator.isMobilePhone(phone, 'any', {strictMode: true})) {
     showModal('Введіть номер телефону в форматі: +380671234567', 'red');
 
     return false;
@@ -58,17 +60,17 @@ async function fetchData(url, method, data) {
 
     const response = await fetch(url, {
       method,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type': 'application/json'},
       body: data
     });
 
-    const parsedData = JSON.parse(data)
+    const result = await response.json();
 
     if (response.ok) {
-      window.location.href = `result.html?name=${encodeURIComponent(parsedData.name)}`;
+      window.location.href = result.redirectUrl;
       form.reset();
     } else {
-      showModal("щось пішло не так");
+      showModal(result.error || "щось пішло не так");
     }
   } catch (error) {
     console.error(error);
