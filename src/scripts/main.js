@@ -57,30 +57,39 @@ function getFormData(name, phone, message) {
 
 async function fetchData(url, method, data) {
   try {
-
+    const sessionToken = localStorage.getItem('sessionToken') || ''; // Получаем токен из localStorage
     const response = await fetch(url, {
       method,
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Session-Token': sessionToken // Отправляем токен в заголовке
+      },
       body: data
     });
 
     const result = await response.json();
+    console.log(result);
 
     if (response.ok) {
+      if (result.sessionToken) {
+        localStorage.setItem('sessionToken', result.sessionToken); // Сохраняем новый токен
+      }
       window.location.href = result.redirectUrl;
       form.reset();
     } else {
-      showModal(result.error || "щось пішло не так");
+      showModal(result.error || 'Щось пішло не так', 'red');
     }
   } catch (error) {
+    showModal('Помилка підключення до сервера', 'red');
     console.error(error);
   }
 }
 
 
-function showModal(modalMessage) {
+function showModal(modalMessage, color = 'black') {
   const notification = document.createElement('div');
   notification.className = 'notification';
+  notification.style.color = color;
   notification.textContent = modalMessage;
   document.body.appendChild(notification);
 
