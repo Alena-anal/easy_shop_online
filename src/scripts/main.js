@@ -57,12 +57,12 @@ function getFormData(name, phone, message) {
 
 async function fetchData(url, method, data) {
   try {
-    const sessionToken = localStorage.getItem('sessionToken') || ''; // Получаем токен из localStorage
+    const sessionToken = localStorage.getItem('sessionToken') || '';
     const response = await fetch(url, {
       method,
       headers: {
         'Content-Type': 'application/json',
-        'X-Session-Token': sessionToken // Отправляем токен в заголовке
+        'X-Session-Token': sessionToken
       },
       body: data
     });
@@ -72,9 +72,9 @@ async function fetchData(url, method, data) {
 
     if (response.ok) {
       if (result.sessionToken) {
-        localStorage.setItem('sessionToken', result.sessionToken); // Сохраняем новый токен
+        localStorage.setItem('sessionToken', result.sessionToken);
       }
-      window.location.href = result.redirectUrl;
+      window.location.href = result.redirectUrl; // Токен уже в URL
       form.reset();
     } else {
       showModal(result.error || 'Щось пішло не так', 'red');
