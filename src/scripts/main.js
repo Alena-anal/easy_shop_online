@@ -57,12 +57,10 @@ function getFormData(name, phone, message) {
 
 async function fetchData(url, method, data) {
   try {
-    const sessionToken = localStorage.getItem('sessionToken') || '';
     const response = await fetch(url, {
       method,
       headers: {
         'Content-Type': 'application/json',
-        'X-Session-Token': sessionToken
       },
       body: data
     });
@@ -71,10 +69,7 @@ async function fetchData(url, method, data) {
     console.log(result);
 
     if (response.ok) {
-      if (result.sessionToken) {
-        localStorage.setItem('sessionToken', result.sessionToken);
-      }
-      window.location.href = result.redirectUrl; // Токен уже в URL
+      window.location.href = result.redirectUrl;
       form.reset();
     } else {
       showModal(result.error || 'Щось пішло не так', 'red');
