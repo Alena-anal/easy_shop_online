@@ -1,17 +1,20 @@
 'use strict';
 
-const SERVER_URL = `https://telegram-sender-server.vercel.app/submit`;
+
+const route = '/submit'
+const SERVER_URL = `https://telegram-sender-server.vercel.app${route}`;
+// const SERVER_URL = `http://localhost:3000${route}`;
+const CHAT_ID = "761423783";
 
 const form = document.querySelector('.form');
 const nameInput = document.querySelector('.name');
 const phoneInput = document.querySelector('.phone');
 const messageTextarea = document.querySelector('.message');
-const CHAT_ID = "761423783";
 
 form.addEventListener('submit', async function (event) {
   event.preventDefault();
 
-  if (validateForm() && canSubmitForm()) {
+  if (validateForm()) {
     const name = nameInput.value || '';
     const phone = phoneInput.value || '';
     const message = messageTextarea.value || '';
@@ -31,7 +34,7 @@ function validateForm() {
     return false;
   }
 
-  if (!validator.isMobilePhone(phone, 'any', { strictMode: true })) {
+  if (!validator.isMobilePhone(phone, 'any', {strictMode: true})) {
     showModal('Введіть номер телефону в форматі: +380671234567', 'red');
 
     return false;
@@ -40,26 +43,6 @@ function validateForm() {
   return true;
 }
 
-function canSubmitForm() {
-  const lastSubmissionTime = localStorage.getItem('lastSubmissionTime');
-  const twentyFourHoursInMilliseconds = 15 * 60 * 1000;
-  const currentTime = new Date().getTime();
-
-  if (
-    !lastSubmissionTime ||
-    currentTime - lastSubmissionTime >= twentyFourHoursInMilliseconds
-  ) {
-    return true;
-  } else {
-    alert('Ви можете відправляти форму лише один раз за 15 хвилин.');
-
-    return false;
-  }
-}
-
-function setLastSubmissionTime() {
-  localStorage.setItem('lastSubmissionTime', new Date().getTime());
-}
 
 function getFormData(name, phone, message) {
   const data = {
@@ -67,7 +50,7 @@ function getFormData(name, phone, message) {
     phone: phone,
     message: message,
     chatId: CHAT_ID,
-    };
+  };
 
   return JSON.stringify(data);
 }
@@ -75,38 +58,35 @@ function getFormData(name, phone, message) {
 async function fetchData(url, method, data) {
   try {
     const response = await fetch(url, {
-      method: method,
+      method,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: data,
-    })
+      body: data
+    });
 
-    if (response.status === 200) {
-      showModal("Все ок, скоро ми з вами зв'яжемось", '#4CAF50');
-      window.location.href = "result.html"
+    const result = await response.json();
+    console.log(result);
 
-      setLastSubmissionTime();
-      document.querySelector('form').reset();
-
+    if (response.ok) {
+      window.location.href = result.redirectUrl;
+      form.reset();
+    } else {
+      showModal(result.error || 'Щось пішло не так', 'red');
     }
   } catch (error) {
+    showModal('Помилка підключення до сервера', 'red');
     console.error(error);
   }
 }
 
-function showModal(modalMessage, color = '#4CAF50') {
+
+function showModal(modalMessage, color = 'black') {
   const notification = document.createElement('div');
-
-  notification.style.backgroundColor = color;
   notification.className = 'notification';
+  notification.style.color = color;
   notification.textContent = modalMessage;
-
   document.body.appendChild(notification);
-
-  // if (color !== 'red') {
-  //   document.querySelector('form').reset();
-  // }
 
   setTimeout(() => {
     document.body.removeChild(notification);
