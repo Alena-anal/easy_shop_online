@@ -1,71 +1,47 @@
 <!-- #region head -->
 <!DOCTYPE html>
-<html
-  lang="en"
-  class="page"
->
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>Amulet of food luck</title>
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="./styles/main.scss"
-    />
-    <link
-      rel="icon"
-      href="images/logo.png"
-      type="image/x-icon"
-    />
+<html lang="en" class="page">
 
-    <script
-      src="./scripts/main.js"
-      defer
-    ></script>
-    <script
-      src="https://unpkg.com/validator@latest/validator.min.js"
-      defer
-    ></script>
-     <!-- Meta Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1854236388749049');
-  fbq('track', 'PageView');
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amulet of food luck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/main.scss" />
+  <link rel="icon" href="images/logo.png" type="image/x-icon" />
+
+  <script src="./scripts/main.js" defer></script>
+  <script src="https://unpkg.com/validator@latest/validator.min.js" defer></script>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1854236388749049');
+    fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1854236388749049&ev=PageView&noscript=1"
-  /></noscript>
+      src="https://www.facebook.com/tr?id=1854236388749049&ev=PageView&noscript=1" /></noscript>
   <!-- End Meta Pixel Code -->
-  </head>
-  <!-- #endregion -->
-  <body class="page__body">
-    <!-- #region header -->
-    <header class="header">
-      <div class="container">
-        <div class="header__content">
-          <!-- <div class="top-bar">
+</head>
+<!-- #endregion -->
+
+<body class="page__body">
+  <!-- #region header -->
+  <header class="header">
+    <div class="container">
+      <div class="header__content">
+        <!-- <div class="top-bar">
             <a
               href="#"
               class="top-bar__logo-link"
@@ -87,7 +63,7 @@
               ></a>
             </div>
           </div> -->
-          <!-- <div class="header__bottom">
+        <!-- <div class="header__bottom">
             <h1 class="header__title">
               Оберіг на Везіння, вдачу, кар'єру та бізнес
               <br />
@@ -95,108 +71,82 @@
               Безкоштовно
             </h1>
           </div> -->
+      </div>
+    </div>
+  </header>
+  <!-- #endregion -->
+  <!-- #region menu -->
+  <aside class="page__menu menu" id="menu">
+    <div class="container">
+      <div class="top-bar menu__top">
+        <a href="#" class="top-bar__logo">
+          <img src="images/logo.png" alt="logo" />
+        </a>
+        <div class="header__icons">
+          <a href="#" class="icon icon--close"></a>
         </div>
       </div>
-    </header>
-    <!-- #endregion -->
-    <!-- #region menu -->
-    <aside
-      class="page__menu menu"
-      id="menu"
-    >
-      <div class="container">
-        <div class="top-bar menu__top">
-          <a
-            href="#"
-            class="top-bar__logo"
-          >
-            <img
-              src="images/logo.png"
-              alt="logo"
-            />
-          </a>
-          <div class="header__icons">
-            <a
-              href="#"
-              class="icon icon--close"
-            ></a>
-          </div>
-        </div>
-        <div class="menu__bottom">
-          <nav class="nav menu__nav">
-            <ul class="nav__list">
-              <li class="nav__item">
-                <a
-                  class="nav__link"
-                  href="#recommended"
-                  >Оберіг на Везіння, вдачу, кар'єру та бізнес</a
-                >
-              </li>
-              <li class="nav__item">
-                <a
-                  class="nav__link"
-                  href="#categories"
-                  >Як Оберіг працює</a>
-              </li>
-              <li class="nav__item">
-                <a
-                  class="nav__link"
-                  href="#about"
-                  >Умови доставки</a
-                >
-              </li>
-              <li class="nav__item">
-                <a
-                  class="nav__link"
-                  href="#contact"
-                  >Отримати безкоштовно</a
-                >
+      <div class="menu__bottom">
+        <nav class="nav menu__nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a class="nav__link" href="#recommended">Оберіг на Везіння, вдачу, кар'єру та бізнес</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#categories">Як Оберіг працює</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#about">Умови доставки</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#contact">Отримати безкоштовно</a>
+            </li>
+          </ul>
+        </nav>
+        <a href="tel:+380 (68) 880-92-23" class="menu__phone-number">
+          +380 (68) 880-87-78
+        </a>
+        <a href="tel:+380 (68) 880-92-23" class="menu__call-to-order">
+          Зателефонувати нам
+        </a>
+      </div>
+    </div>
+  </aside>
+  <!-- #endregion -->
+
+  <main class="main">
+    <div class="main__content">
+      <!-- #region recommended -->
+      <section class="recommended" id="recommended">
+        <div class="container">
+          <h2 class="section-title">Оберіг на везіння, вдачу, кар'єру та бізнес</h2>
+
+          <h2 class="product__title">✨ Таємниця Амулета ✨</h2>
+
+          <p class="product__category">Колись, у давні часи, жив мудрець, який володів знаннями про потоки енергії, що
+            керують долями людей. Він шукав спосіб передати силу удачі, захисту та процвітання тим, хто цього потребує.
+            Одного разу, під час медитації на вершині стародавньої гори, йому з’явилося видіння: він побачив сяюче
+            кільце, яке випромінювало потужну енергію благополуччя.</p>
+
+          <p class="product__category">Мудрець зрозумів, що це знак. Він створив перший амулет і зарядив його особливими
+            словами сили. З того часу кільце передавалося через покоління, змінюючи життя своїх власників. Але
+            збереглася таємниця: <span class="highlight">кожен амулет потрібно начитати індивідуально</span>, щоб він
+            відкрив енергетичні потоки саме для тієї людини, якій він належить.</p>
+
+          <p class="product__category">Сьогодні ця магічна традиція продовжується. Таролог, що володіє старовинним
+            знанням, начитає амулет особисто для вас — враховуючи ваші життєві цілі та бажання.</p>
+
+          <div class="benefits">
+            <h2 class="product__title">Переваги Амулета</h2>
+            <ul>
+              <li><span class="product__category">Притягує удачу, гроші та успіх</span> – відкриває нові можливості в
+                кар'єрі та бізнесі.</li>
+              <li><span class="product__category">Захищає від негативу</span> – відводить заздрісників і невдачі.</li>
+              <li><span class="product__category">Покращує здоров’я та енергетику</span> – допомагає відновити внутрішню
+                гармонію.</li>
+              <li><span class="product__category">Працює саме для вас</span> – заряджається під ваші особисті потреби.
               </li>
             </ul>
-          </nav>
-          <a
-            href="tel:+380 (68) 880-92-23"
-            class="menu__phone-number"
-          >
-            +380 (68) 880-87-78
-          </a>
-          <a
-            href="tel:+380 (68) 880-92-23"
-            class="menu__call-to-order"
-          >
-            Зателефонувати нам
-          </a>
-        </div>
-      </div>
-    </aside>
-    <!-- #endregion -->
-
-    <main class="main">
-      <div class="main__content">
-        <!-- #region recommended -->
-        <section
-          class="recommended"
-          id="recommended"
-        >
-          <div class="container">
-            <h2 class="section-title">Оберіг на везіння, вдачу, кар'єру та бізнес</h2>
-            
-              <h2 class="product__title">✨ Таємниця Амулета ✨</h2>
-          
-              <p class="product__category">Колись, у давні часи, жив мудрець, який володів знаннями про потоки енергії, що керують долями людей. Він шукав спосіб передати силу удачі, захисту та процвітання тим, хто цього потребує. Одного разу, під час медитації на вершині стародавньої гори, йому з’явилося видіння: він побачив сяюче кільце, яке випромінювало потужну енергію благополуччя.</p>
-          
-              <p class="product__category">Мудрець зрозумів, що це знак. Він створив перший амулет і зарядив його особливими словами сили. З того часу кільце передавалося через покоління, змінюючи життя своїх власників. Але збереглася таємниця: <span class="highlight">кожен амулет потрібно начитати індивідуально</span>, щоб він відкрив енергетичні потоки саме для тієї людини, якій він належить.</p>
-          
-              <p class="product__category">Сьогодні ця магічна традиція продовжується. Таролог, що володіє старовинним знанням, начитає амулет особисто для вас — враховуючи ваші життєві цілі та бажання.</p>
-          
-              <div class="benefits">
-                  <h2 class="product__title">Переваги Амулета</h2>
-                  <ul>
-                      <li><span class="product__category">Притягує удачу, гроші та успіх</span> – відкриває нові можливості в кар'єрі та бізнесі.</li>
-                      <li><span class="product__category">Захищає від негативу</span> – відводить заздрісників і невдачі.</li>
-                      <li><span class="product__category">Покращує здоров’я та енергетику</span> – допомагає відновити внутрішню гармонію.</li>
-                      <li><span class="product__category">Працює саме для вас</span> – заряджається під ваші особисті потреби.</li>
-                  </ul>
             <!-- <div class="recommended__products">
               <article class="product recommended__product">
                 <img
@@ -236,14 +186,11 @@
               </article>
             </div> -->
           </div>
-        </section>
-        <!-- #endregion  -->
-        <!-- #region categories -->
-        <section
-          class="categories"
-          id="categories"
-        >
-          <!-- <div class="container">
+      </section>
+      <!-- #endregion  -->
+      <!-- #region categories -->
+      <section class="categories" id="categories">
+        <!-- <div class="container">
             <h2 class="section-title categories-title">
               Як Оберіг працює.
             </h2>
@@ -344,10 +291,10 @@
               </div>
             </div>
           </div> -->
-        </section>
-        <!-- #endregion -->
-        <!-- #region about -->
-        <!-- <section
+      </section>
+      <!-- #endregion -->
+      <!-- #region about -->
+      <!-- <section
           class="about"
           id="about"
         >
@@ -378,70 +325,36 @@
             </div>
           </div>
         </section> -->
-        <!-- #endregion -->
-        <!-- #region contact -->
-        <section
-          class="contact"
-          id="contact"
-        >
-          <div class="container">
-            <div class="contact__content">
-              <h2 class="section-title contact-title">Залишити заявку</h2>
-              <form
-                id="form"
-                action="#"
-                method="post"
-                class="contact__form form"
-                novalidate
-              >
-                <label class="contact__label">
-                  <input
-                    class="contact__input name"
-                    type="text"
-                    title="Вкажіть своє ім'я"
-                    name="user-name"
-                    placeholder="Ім'я"
-                    minlength="3"
-                    maxlength="30"
-                    required
-                  />
-                </label>
+      <!-- #endregion -->
+      <!-- #region contact -->
+      <section class="contact" id="contact">
+        <div class="container">
+          <div class="contact__content">
+            <h2 class="section-title contact-title">Залишити заявку</h2>
+            <form id="form" action="#" method="post" class="contact__form form" novalidate>
+              <label class="contact__label">
+                <input class="contact__input name" type="text" title="Вкажіть своє ім'я" name="user-name"
+                  placeholder="Ім'я" minlength="3" maxlength="30" required />
+              </label>
 
-                <label class="contact__label">
-                  <input
-                    class="contact__input phone"
-                    type="tel"
-                    title="Вкажіть свій номер телефону"
-                    minlength="10"
-                    maxlength="15"
-                    name="user-phone"
-                    placeholder="Номер телефону (+380671234567)"
-                    required
-                  />
-                </label>
+              <label class="contact__label">
+                <input class="contact__input phone" type="tel" title="Вкажіть свій номер телефону" minlength="10"
+                  maxlength="15" name="user-phone" placeholder="Номер телефону (+380671234567)" required />
+              </label>
 
-                <label class="contact__label">
-                  <textarea
-                    placeholder="Додаткова інформація"
-                    class="contact__area message"
-                    name="user-message"
-                    pattern="^(?!\s*$).+"
-                    title="Enter text that does not contain spaces only"
-                    cols="30"
-                    rows="10"
-                  ></textarea>
-                </label>
+              <label class="contact__label">
+                <textarea placeholder="Додаткова інформація" class="contact__area message" name="user-message"
+                  pattern="^(?!\s*$).+" title="Enter text that does not contain spaces only" cols="30"
+                  rows="10"></textarea>
+              </label>
 
-                <div class="buttons">
-                  <button
-                    type="submit"
-                    class="buttons__button buttons__button--bottom"
-                  >
-                    Отримати безкоштовно
-                  </button>
-                </div>
-              </form>
-              <!-- <ul class="contact__list">
+              <div class="buttons">
+                <button type="submit" class="buttons__button buttons__button--bottom">
+                  Отримати безкоштовно
+                </button>
+              </div>
+            </form>
+            <!-- <ul class="contact__list">
                 <li class="contact__item">
                   <p class="contact__subtext">Телефон</p>
                   <a
@@ -471,14 +384,15 @@
                   </a>
                 </li>
               </ul> -->
-            </div>
           </div>
-        </section>
-        <!-- #endregion -->
-      </div>
-    </main>
-    <!-- #region footer -->
-    <footer class="footer"></footer>
-    <!-- #endregion -->
-  </body>
+        </div>
+      </section>
+      <!-- #endregion -->
+    </div>
+  </main>
+  <!-- #region footer -->
+  <footer class="footer"></footer>
+  <!-- #endregion -->
+</body>
+
 </html>
